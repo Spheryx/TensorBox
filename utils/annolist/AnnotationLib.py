@@ -180,12 +180,14 @@ class AnnoPoint(object):
         self.id = id;
 
 class AnnoRect(object):
-    def __init__(self, x1=-1, y1=-1, x2=-1, y2=-1):
+    def __init__(self, x1=-1, y1=-1, x2=-1, y2=-1, center=None):
 
         self.x1 = x1
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
+
+        self.center = center
 
         self.score = -1.0
         self.scale = -1.0

@@ -566,8 +566,8 @@ class TensorBox(object):
             subprocess.call('mkdir -p %s' % image_dir, shell=True)
             for i in range(len(true_annolist)):
                 true_anno = true_annolist[i]
-                orig_img = imread('%s/%s' % (data_dir, true_anno.imageName))[:,:,:3]
-                img = imresize(orig_img, (self.H["image_height"], self.H["image_width"]), interp='cubic')
+                orig_img = imread('%s' % (true_anno.imageName), mode='RGB')
+                img = imresize(orig_img, (self.H["image_height"], self.H["image_width"], 3), interp='cubic')
                 feed = {x_in: img}
                 (np_pred_boxes, np_pred_confidences) = sess.run([pred_boxes, pred_confidences], feed_dict=feed)
                 pred_anno = al.Annotation()
