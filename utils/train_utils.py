@@ -174,6 +174,13 @@ def add_rectangles(H, orig_image, confidences, boxes, use_stitching=False, rnn_l
 
     return image, rects
 
+def draw_rectangles(image, rectangles, color=(0, 255, 0)):
+    for rect in rectangles:
+        cv2.rectangle(image, (int(rect.x1), int(rect.y1)), (int(rect.x2), int(rect.y2)), color, 2)
+        cv2.circle(image, (rect.center[0], rect.center[1]), 2, color, -1)
+
+    return image
+
 def to_x1y1x2y2(box):
     w = tf.maximum(box[:, 2:3], 1)
     h = tf.maximum(box[:, 3:4], 1)
